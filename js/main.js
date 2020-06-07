@@ -1,7 +1,18 @@
 window.addEventListener("load", init);
 
 //Globals
-let time = 5;
+
+//Available Levels
+const Levels = {
+  easy: 5,
+  medium: 3,
+  hard: 1
+};
+
+//to change levels
+const currentLevel = levels.easy;
+
+let time = currentLevel;
 let score = 0;
 let isPlaying;
 
@@ -47,6 +58,8 @@ const words = [
 
 //Initialize the game
 function init() {
+  //show number of seconds in UI
+  seconds.innerHTML = currentLevel;
   //load word from array
   showWord(words);
   //Start matching on word input
@@ -61,7 +74,7 @@ function init() {
 function startMatch() {
   if (matchWords()) {
     isPlaying = true;
-    time = 6;
+    time = currentLevel + 1;
     showWord(words);
     wordInput.value = "";
     score++;
